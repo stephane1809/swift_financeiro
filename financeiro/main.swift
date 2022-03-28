@@ -24,6 +24,32 @@ while (true){
 }
 let rendaInicial = renda
 
+// RENDA EXTRA
+var rendaExtra: Double?
+var res1: String?
+
+while (true){
+    print("\nRecebeu alguma renda extra? ", terminator: "")
+    let res = readLine()
+    res1 = res
+    if(res1 != "s" &&     res1 != "n") {
+        print("ERRO. Digite 's' para sim ou 'n' para não")
+    }else{
+        if res1 == "n"{
+            rendaExtra = 0
+          break
+        }else{
+            print("Valor da renda extra: ", terminator: "")
+            var valor = readLine()
+            rendaExtra = Double(valor!)
+            if rendaExtra == nil{
+                print("\nERRO. Valor inserido não corresponde a numérico")
+            }
+            break
+        }
+    }
+}
+
 // CONTAS FIXAS
 var c1: String = "Celular"
 var c2: String = "Transporte"
@@ -71,27 +97,11 @@ while (true){
     }
 }
 
-// ADICIONA NOVAS CONTAS FIXAS NA TEBELA
-print("""
-
- ---------------------------
-|        CONTAS FIXAS       |
- ---------------------------
-  🔴 \(c1)  |  💰 \(v1) $
-  🔴 \(c2)  |  💰 \(v2) $
-""")
-var gastosFixos: Double = (v1 + v2)
-while count != 0 {
-    print("  🔴 \(listNome[count - 1]) |  💰 \(listValor[count - 1]) $")
-    renda! -= listValor[count - 1]
-    gastosFixos += listValor[count - 1]
-    count -= 1
-}
-print("\n")
 
 
 // ADICIONA CONTAS VARIÁVEIS
 print("""
+
  ----------------------------
 |      CONTAS VARIÁVEIS      |
  ----------------------------
@@ -129,9 +139,28 @@ while (true){
     }
 }
 
+// ADICIONA NOVAS CONTAS FIXAS NA TEBELA
+
+print("""
+
+ ---------------------------
+|        CONTAS FIXAS       |
+ ---------------------------
+  🔴 \(c1)  |  💰 \(v1) $
+  🔴 \(c2)  |  💰 \(v2) $
+""")
+var gastosFixos: Double = (v1 + v2)
+while count != 0 {
+    print("  🔴 \(listNome[count - 1]) |  💰 \(listValor[count - 1]) $")
+    renda! -= listValor[count - 1]
+    gastosFixos += listValor[count - 1]
+    count -= 1
+}
 
 // ADICIONA NOVAS CONTAS VARIÁVEIS NA TEBELA
+
 print("""
+
  ----------------------------
 |      CONTAS VARIÁVEIS      |
  ----------------------------
@@ -143,22 +172,25 @@ while count2 != 0 {
     gastosVariaveis += listValorV[count2 - 1]
     count2 -= 1
 }
-print("\n")
-
 
 
 // CÁLCULOS DE RENDIMENTO
 var rendimento: Double
-rendimento = (renda! - v1 - v2)
+
+rendimento = (renda! - v1 - v2 + rendaExtra!)
 
 
 print("""
+
  ------------------------------
 |      GERÊNCIA FINANCEIRA     |
  ------------------------------
 """)
-print("  🟢 Renda Inicial: ",rendaInicial!)
-print("  🔴 Gastos Fixos: ",gastosFixos)
-print("  🟠 Gastos Variáveis: ",gastosVariaveis)
-print("  💸 Gastos totais: ", (gastosFixos + gastosVariaveis))
-print("  💰 Rendimento: ", rendimento)
+print("  🟢 Renda Inicial: ",rendaInicial!,"$")
+print("  🟢 Renda Extra: ",rendaExtra!,"$")
+print("  🔴 Gastos Fixos: ",gastosFixos,"$")
+print("  🟠 Gastos Variáveis: ",gastosVariaveis,"$")
+print(" _____________________________")
+print("  💸 Gastos totais: ", (gastosFixos + gastosVariaveis),"$")
+print("  💰 Rendimento: ", rendimento,"$")
+print("\n")
