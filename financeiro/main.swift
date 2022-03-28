@@ -53,7 +53,7 @@ while (true){
 // CONTAS FIXAS
 var c1: String = "Celular"
 var c2: String = "Transporte"
-var v1: Double = 60
+var v1: Double = 70
 var v2: Double = 165.6
 
 print("""
